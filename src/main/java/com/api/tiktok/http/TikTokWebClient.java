@@ -1,13 +1,11 @@
-package com.api.tiktok;
+package com.api.tiktok.http;
 
 import io.github.jwdeveloper.tiktok.TikTokLive;
-import org.springframework.beans.factory.annotation.Configurable;
-import org.springframework.context.annotation.Bean;
+import org.springframework.stereotype.Component;
 
-@Configurable
-public class ClientFactory {
+@Component
+public class TikTokWebClient {
 
-    @Bean
     public void init() {
         TikTokLive.newClient("bangbetmenygy")
                 .onGift((liveClient, event) ->
