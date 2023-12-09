@@ -1,13 +1,15 @@
-package com.api.tiktok.http;
+package com.api.tiktok.domain;
 
 import io.github.jwdeveloper.tiktok.TikTokLive;
-import org.springframework.stereotype.Component;
+import io.github.jwdeveloper.tiktok.live.LiveClient;
+import org.springframework.beans.factory.annotation.Configurable;
 
-@Component
-public class TikTokWebClient {
+@Configurable
+public class TikTokClientFactory {
 
-    public void init() {
-        TikTokLive.newClient("bangbetmenygy")
+    public LiveClient init() {
+        System.out.println("tiktok test" + hostName);
+        return TikTokLive.newClient(hostName)
                 .onGift((liveClient, event) ->
                 {
                     String message = switch (event.getGift()) {
@@ -44,4 +46,10 @@ public class TikTokWebClient {
                 })
                 .buildAndConnect();
     }
+
+    public TikTokClientFactory(String hostName) {
+        this.hostName = hostName;
+    }
+
+    private final String hostName;
 }
